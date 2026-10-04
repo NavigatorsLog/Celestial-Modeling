@@ -1,0 +1,40 @@
+# publish-results.yml  [CL, 4 October 2026]
+# Copies the text outputs (not the .bin archives) of a finished run's artifacts into results/<label>/ on main,
+# so results are readable in the repository and by Claude, whose workspace cannot reach GitHub's artifact storage.
+name: Publish run results
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: "Actions run ID whose artifacts to publish"
+        required: true
+      label:
+        description: "Folder name under results/ (for example b0)"
+        required: true
+permissions:
+  contents: write
+  actions: read
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: dl
+          run-id: ${{ inputs.run_id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Copy text outputs and commit
+        run: |
+          dest="results/${{ inputs.label }}"
+          mkdir -p "$dest"
+          for d in dl/*/; do
+            name=$(basename "$d"); mkdir -p "$dest/$name"
+            find "$d" -type f \( -name '*.csv' -o -name '*.txt' \) -exec cp {} "$dest/$name/" \;
+          done
+          echo "source run: ${{ inputs.run_id }}" > "$dest/SOURCE.txt"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898+github-actions[bot]@users.noreply.github.com"
+          git add results
+          git commit -m "Publish text outputs of run ${{ inputs.run_id }} to $dest" || echo "nothing to commit"
+          git push
