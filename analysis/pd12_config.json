@@ -1,5 +1,5 @@
 {
- "_note": "P-D12 configuration [CL draft, 4 October 2026]. NOT CERTIFIED. stage_measure and stage_fraction are set from B0 before certification; rule_version v1 is the rule CBH approved; v2 is a proposed amendment pending CBH.",
+ "_note": "P-D12 configuration [CL draft, 4 October 2026]. NOT CERTIFIED. stage_measure and stage_fraction are set from B0 before certification. Amendments approved by CBH on 4 October 2026: primary statistic is the ratio of summed S across pairs; rule v2 (an interval excluding no difference gives NOT ACCEPTED whatever the control says).",
  "certified": false,
  "stage_measure": "TBD",
  "stage_fraction": null,
@@ -8,7 +8,7 @@
  "f_tol": 0.05,
  "bootstrap_B": 10000,
  "bootstrap_seed": 20261004,
- "rule_version": "v1",
+ "rule_version": "v2",
  "runs": [
   {
    "id": "p01_f1",

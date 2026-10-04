@@ -20,8 +20,8 @@ Statistics (unit = run pair; bootstrap over pairs, fixed seed, percentile 90% in
 Verdict: ACCEPTED iff R interval inside [r_lo, r_hi] and dF interval inside [-f_tol, +f_tol];
   otherwise NOT ACCEPTED, unless the same-condition control (factor 1 vs factor 1) also fails, then INCONCLUSIVE.
   The reproducibility check must pass first or the verdict is INSTRUMENT FAILURE.
-  rule_version v2 (proposed, pending CBH): if either interval excludes no difference (R = 1 or dF = 0), the verdict
-  is NOT ACCEPTED (difference shown) whatever the control says; v1 is the rule as approved on 4 October 2026.
+  rule_version v2 (approved by CBH, 4 October 2026): if either interval excludes no difference (R = 1 or dF = 0), the verdict
+  is NOT ACCEPTED (difference shown) whatever the control says; v1 was the rule before that amendment.
 """
 import json, sys, random
 
@@ -91,7 +91,7 @@ def passes(st, cfg):
             and -cfg['f_tol'] <= st['dF_ci'][0] and st['dF_ci'][1] <= cfg['f_tol'])
 
 def difference_shown(st, cfg):
-    # rule v2 (proposed, pending CBH): an interval that excludes 'no difference' (R = 1, dF = 0) shows a real
+    # rule v2 (approved by CBH): an interval that excludes 'no difference' (R = 1, dF = 0) shows a real
     # difference, which the control's noise cannot explain away
     return st['R_ci'][0] > 1 or st['R_ci'][1] < 1 or st['dF_ci'][0] > 0 or st['dF_ci'][1] < 0
 
