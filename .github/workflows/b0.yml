@@ -1,6 +1,7 @@
-# b0.yml  v2 [CL, 4 October 2026]
+# b0.yml  v3 [CL, 4 October 2026]
 # Exploratory benchmark B0: one real-size run and one 3x run from the same B0 seed, one 6-hour session each.
 # B0 is exploratory: it sets the cost estimate and the P-D12 matched-stage fraction. Its seed is never reused in P-D12.
+# v3: runner hardware is recorded after any resume download, appended per session.
 # v2: runs setup.sh through bash (files added in the web editor are not executable); adds explicit permissions.
 name: B0 benchmark (exploratory)
 on:
@@ -30,10 +31,6 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build pinned toolchain
         run: bash scripts/setup.sh
-      - name: Record runner hardware
-        run: |
-          mkdir -p run
-          { nproc; lscpu | grep "Model name"; } > run/runner.txt
       - name: Fetch previous session (optional)
         if: ${{ inputs.resume_run_id != '' }}
         uses: actions/download-artifact@v4
@@ -42,6 +39,10 @@ jobs:
           path: run
           run-id: ${{ inputs.resume_run_id }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Record runner hardware (appended per session)
+        run: |
+          mkdir -p run
+          { echo "session started $(date -u +%FT%TZ)"; nproc; lscpu | grep "Model name"; } >> run/runner.txt
       - name: Run one session (stops itself at 5.5 hours and saves)
         working-directory: run
         run: ../build/formation_run ${{ inputs.seed }} ${{ matrix.factor }} ${{ inputs.tmax_yr }} 19800 > session.log 2>&1 || true
