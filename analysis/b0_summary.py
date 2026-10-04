@@ -11,7 +11,7 @@ def load(fn):
             for kv in line[2:].split():
                 k, v = kv.split('='); head[k] = v
         elif line[0].isdigit():
-            t, n, loose, calls, wall = line.strip().split(',')
+            t, n, loose, calls, wall = line.strip().split(',')[:5]
             rows.append((float(t), int(n), float(loose), int(calls), float(wall)))
     return head, rows
 for fn in sys.argv[1:]:

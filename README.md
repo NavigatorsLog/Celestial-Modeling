@@ -17,6 +17,12 @@ Known issue [CL]: in the module's hit-and-run branch, the interacting fraction b
 - src/formation_run.c: 154-body Chambers (2013) bimodal disk (14 embryos of 0.093 and 140 planetesimals of 0.0093 Earth masses, 0.3 to 2.0 AU), Jupiter and Saturn on current orbits, 6-day step, density 3 g/cm3, minimum fragment mass half a planetesimal. Arguments: seed, expansion factor, simulated-time cap, wall-clock limit. It saves and resumes on its own, so long runs are split into sessions.
 - Two inputs are inferred, not read from the source, and are flagged in the code: the body masses (from the published total) and the surface density starting from zero at 0.3 AU.
 
+## Files
+- src/formation_run.c (v2): the simulation. v2 adds collision_log.csv (it separates hit-and-run from partial accretion, which the module's own report gives the same code), a small-body pool column, and an optional stop rule. Physics is unchanged from v1; a same-seed check reproduced v1's collision sequence exactly.
+- analysis/b0_summary.py: exploratory B0 summary.
+- analysis/pd12_analysis.py and analysis/pd12_config.json: the P-D12 analysis and its run list (51 runs: 20 pairs, 10 controls, 1 repeat). Draft, not frozen, not certified.
+- .github/workflows/b0.yml (v3), publish-results.yml, pd12.yml. pd12.yml refuses to run until pd12_config.json says certified, and chains its own 5.5-hour rounds until every run reaches the matched stage.
+
 ## Runs planned
 1. B0 (exploratory): one real-size and one 3x run from seed 900001, one 6-hour session each, via the "B0 benchmark" workflow. It measures cost and sets the P-D12 matched-stage fraction. It is never evidence about inflation, and its seed is never reused.
 2. P-D12 (confirmatory, preregistered): 20 paired runs (real size and 3x, same seed per pair), 10 extra real-size control runs, and one same-seed repeat. The analysis script is frozen and hashed, and the preregistration must pass its certification check, before any P-D12 run starts.

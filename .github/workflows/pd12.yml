@@ -1,0 +1,100 @@
+# pd12.yml  [CL draft, 4 October 2026]
+# Confirmatory comparison P-D12. Each round runs one 5.5-hour session of every unfinished run, publishes the text
+# outputs to results/pd12/, and, if any run has not reached the matched stage, starts the next round by itself.
+# Guard: refuses to run unless analysis/pd12_config.json says certified: true (commit-before-run discipline).
+name: P-D12 comparison (confirmatory)
+on:
+  workflow_dispatch:
+    inputs:
+      resume_run_id:
+        description: "Run ID of the previous round (empty for the first round)"
+        default: ""
+permissions:
+  contents: write
+  actions: write
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.m.outputs.matrix }}
+      measure: ${{ steps.m.outputs.measure }}
+      fraction: ${{ steps.m.outputs.fraction }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: m
+        run: |
+          python3 - << 'PY'
+          import json, os
+          c = json.load(open('analysis/pd12_config.json'))
+          if not c.get('certified'):
+              raise SystemExit('P-D12 is not certified: refusing to run (see the preregistration).')
+          inc = [dict(id=r['id'], seed=r['seed'], factor=r['factor']) for r in c['runs']]
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+              f.write('matrix=' + json.dumps({'include': inc}) + '\n')
+              f.write('measure=' + c['stage_measure'] + '\n')
+              f.write('fraction=' + str(c['stage_fraction']) + '\n')
+          PY
+  run:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch this run's previous session
+        if: ${{ inputs.resume_run_id != '' }}
+        uses: actions/download-artifact@v4
+        with:
+          name: pd12-${{ matrix.id }}
+          path: run
+          run-id: ${{ inputs.resume_run_id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build pinned toolchain (skipped if this run is already done)
+        run: |
+          mkdir -p run
+          if [ ! -f run/done.txt ]; then bash scripts/setup.sh; fi
+      - name: Run one session
+        working-directory: run
+        run: |
+          { echo "session started $(date -u +%FT%TZ)"; nproc; lscpu | grep "Model name"; } >> runner.txt
+          if [ ! -f done.txt ]; then
+            ../build/formation_run ${{ matrix.seed }} ${{ matrix.factor }} 300000000 19800 ${{ needs.plan.outputs.measure }} ${{ needs.plan.outputs.fraction }} > session.log 2>&1 || true
+            cp ../build/build_hashes.txt . || true
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pd12-${{ matrix.id }}
+          path: run/
+          retention-days: 90
+  chain:
+    needs: run
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: dl
+          pattern: pd12-*
+      - name: Publish text outputs and start the next round if needed
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          left=0
+          for d in dl/pd12-*/; do
+            id=$(basename "$d"); id=${id#pd12-}
+            mkdir -p "results/pd12/$id"
+            find "$d" -maxdepth 1 -type f \( -name '*.csv' -o -name '*.txt' \) -exec cp {} "results/pd12/$id/" \;
+            [ -f "$d/done.txt" ] || left=$((left+1))
+          done
+          echo "round ${{ github.run_id }}: $left runs not yet at the matched stage" > results/pd12/ROUND.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "41898+github-actions[bot]@users.noreply.github.com"
+          git add results/pd12 && git commit -m "P-D12 round ${{ github.run_id }}: $left runs remaining" || true
+          git push || true
+          if [ "$left" -gt 0 ]; then
+            gh workflow run pd12.yml -f resume_run_id=${{ github.run_id }}
+          fi

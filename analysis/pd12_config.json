@@ -1,0 +1,499 @@
+{
+ "_note": "P-D12 configuration [CL draft, 4 October 2026]. NOT CERTIFIED. stage_measure and stage_fraction are set from B0 before certification; rule_version v1 is the rule CBH approved; v2 is a proposed amendment pending CBH.",
+ "certified": false,
+ "stage_measure": "TBD",
+ "stage_fraction": null,
+ "r_lo": 0.8,
+ "r_hi": 1.25,
+ "f_tol": 0.05,
+ "bootstrap_B": 10000,
+ "bootstrap_seed": 20261004,
+ "rule_version": "v1",
+ "runs": [
+  {
+   "id": "p01_f1",
+   "dir": "results/pd12/p01_f1",
+   "seed": 1001,
+   "factor": 1,
+   "role": "pair"
+  },
+  {
+   "id": "p01_f3",
+   "dir": "results/pd12/p01_f3",
+   "seed": 1001,
+   "factor": 3,
+   "role": "pair"
+  },
+  {
+   "id": "p02_f1",
+   "dir": "results/pd12/p02_f1",
+   "seed": 1002,
+   "factor": 1,
+   "role": "pair"
+  },
+  {
+   "id": "p02_f3",
+   "dir": "results/pd12/p02_f3",
+   "seed": 1002,
+   "factor": 3,
+   "role": "pair"
+  },
+  {
+   "id": "p03_f1",
+   "dir": "results/pd12/p03_f1",
+   "seed": 1003,
+   "factor": 1,
+   "role": "pair"
+  },
+  {
+   "id": "p03_f3",
+   "dir": "results/pd12/p03_f3",
+   "seed": 1003,
+   "factor": 3,
+   "role": "pair"
+  },
+  {
+   "id": "p04_f1",
+   "dir": "results/pd12/p04_f1",
+   "seed": 1004,
+   "factor": 1,
+   "role": "pair"
+  },
+  {
+   "id": "p04_f3",
+   "dir": "results/pd12/p04_f3",
+   "seed": 1004,
+   "factor": 3,
+   "role": "pair"
+  },
+  {
+   "id": "p05_f1",
+   "dir": "results/pd12/p05_f1",
+   "seed": 1005,
+   "factor": 1,
+   "role": "pair"
+  },
+  {
+   "id": "p05_f3",
+   "dir": "results/pd12/p05_f3",
+   "seed": 1005,
+   "factor": 3,
+   "role": "pair"
+  },
+  {
+   "id": "p06_f1",
+   "dir": "results/pd12/p06_f1",
+   "seed": 1006,
+   "factor": 1,
+   "role": "pair"
+  },
+  {
+   "id": "p06_f3",
+   "dir": "results/pd12/p06_f3",
+   "seed": 1006,
+   "factor": 3,
+   "role": "pair"
+  },
+  {
+   "id": "p07_f1",
+   "dir": "results/pd12/p07_f1",
+   "seed": 1007,
+   "factor": 1,
+   "role": "pair"
+  },
+  {
+   "id": "p07_f3",
+   "dir": "results/pd12/p07_f3",
+   "seed": 1007,
+   "factor": 3,
+   "role": "pair"
+  },
+  {
+   "id": "p08_f1",
+   "dir": "results/pd12/p08_f1",
+   "seed": 1008,
+   "factor": 1,
+   "role": "pair"
+  },
+  {
+   "id": "p08_f3",
+   "dir": "results/pd12/p08_f3",
+   "seed": 1008,
+   "factor": 3,
+   "role": "pair"
+  },
+  {
+   "id": "p09_f1",
+   "dir": "results/pd12/p09_f1",
+   "seed": 1009,
+   "factor": 1,
+   "role": "pair"
+  },
+  {
+   "id": "p09_f3",
+   "dir": "results/pd12/p09_f3",
+   "seed": 1009,
+   "factor": 3,
+   "role": "pair"
+  },
+  {
+   "id": "p10_f1",
+   "dir": "results/pd12/p10_f1",
+   "seed": 1010,
+   "factor": 1,
+   "role": "pair"
+  },
+  {
+   "id": "p10_f3",
+   "dir": "results/pd12/p10_f3",
+   "seed": 1010,
+   "factor": 3,
+   "role": "pair"
+  },
+  {
+   "id": "p11_f1",
+   "dir": "results/pd12/p11_f1",
+   "seed": 1011,
+   "factor": 1,
+   "role": "pair"
+  },
+  {
+   "id": "p11_f3",
+   "dir": "results/pd12/p11_f3",
+   "seed": 1011,
+   "factor": 3,
+   "role": "pair"
+  },
+  {
+   "id": "p12_f1",
+   "dir": "results/pd12/p12_f1",
+   "seed": 1012,
+   "factor": 1,
+   "role": "pair"
+  },
+  {
+   "id": "p12_f3",
+   "dir": "results/pd12/p12_f3",
+   "seed": 1012,
+   "factor": 3,
+   "role": "pair"
+  },
+  {
+   "id": "p13_f1",
+   "dir": "results/pd12/p13_f1",
+   "seed": 1013,
+   "factor": 1,
+   "role": "pair"
+  },
+  {
+   "id": "p13_f3",
+   "dir": "results/pd12/p13_f3",
+   "seed": 1013,
+   "factor": 3,
+   "role": "pair"
+  },
+  {
+   "id": "p14_f1",
+   "dir": "results/pd12/p14_f1",
+   "seed": 1014,
+   "factor": 1,
+   "role": "pair"
+  },
+  {
+   "id": "p14_f3",
+   "dir": "results/pd12/p14_f3",
+   "seed": 1014,
+   "factor": 3,
+   "role": "pair"
+  },
+  {
+   "id": "p15_f1",
+   "dir": "results/pd12/p15_f1",
+   "seed": 1015,
+   "factor": 1,
+   "role": "pair"
+  },
+  {
+   "id": "p15_f3",
+   "dir": "results/pd12/p15_f3",
+   "seed": 1015,
+   "factor": 3,
+   "role": "pair"
+  },
+  {
+   "id": "p16_f1",
+   "dir": "results/pd12/p16_f1",
+   "seed": 1016,
+   "factor": 1,
+   "role": "pair"
+  },
+  {
+   "id": "p16_f3",
+   "dir": "results/pd12/p16_f3",
+   "seed": 1016,
+   "factor": 3,
+   "role": "pair"
+  },
+  {
+   "id": "p17_f1",
+   "dir": "results/pd12/p17_f1",
+   "seed": 1017,
+   "factor": 1,
+   "role": "pair"
+  },
+  {
+   "id": "p17_f3",
+   "dir": "results/pd12/p17_f3",
+   "seed": 1017,
+   "factor": 3,
+   "role": "pair"
+  },
+  {
+   "id": "p18_f1",
+   "dir": "results/pd12/p18_f1",
+   "seed": 1018,
+   "factor": 1,
+   "role": "pair"
+  },
+  {
+   "id": "p18_f3",
+   "dir": "results/pd12/p18_f3",
+   "seed": 1018,
+   "factor": 3,
+   "role": "pair"
+  },
+  {
+   "id": "p19_f1",
+   "dir": "results/pd12/p19_f1",
+   "seed": 1019,
+   "factor": 1,
+   "role": "pair"
+  },
+  {
+   "id": "p19_f3",
+   "dir": "results/pd12/p19_f3",
+   "seed": 1019,
+   "factor": 3,
+   "role": "pair"
+  },
+  {
+   "id": "p20_f1",
+   "dir": "results/pd12/p20_f1",
+   "seed": 1020,
+   "factor": 1,
+   "role": "pair"
+  },
+  {
+   "id": "p20_f3",
+   "dir": "results/pd12/p20_f3",
+   "seed": 1020,
+   "factor": 3,
+   "role": "pair"
+  },
+  {
+   "id": "c01_f1",
+   "dir": "results/pd12/c01_f1",
+   "seed": 2001,
+   "factor": 1,
+   "role": "control"
+  },
+  {
+   "id": "c02_f1",
+   "dir": "results/pd12/c02_f1",
+   "seed": 2002,
+   "factor": 1,
+   "role": "control"
+  },
+  {
+   "id": "c03_f1",
+   "dir": "results/pd12/c03_f1",
+   "seed": 2003,
+   "factor": 1,
+   "role": "control"
+  },
+  {
+   "id": "c04_f1",
+   "dir": "results/pd12/c04_f1",
+   "seed": 2004,
+   "factor": 1,
+   "role": "control"
+  },
+  {
+   "id": "c05_f1",
+   "dir": "results/pd12/c05_f1",
+   "seed": 2005,
+   "factor": 1,
+   "role": "control"
+  },
+  {
+   "id": "c06_f1",
+   "dir": "results/pd12/c06_f1",
+   "seed": 2006,
+   "factor": 1,
+   "role": "control"
+  },
+  {
+   "id": "c07_f1",
+   "dir": "results/pd12/c07_f1",
+   "seed": 2007,
+   "factor": 1,
+   "role": "control"
+  },
+  {
+   "id": "c08_f1",
+   "dir": "results/pd12/c08_f1",
+   "seed": 2008,
+   "factor": 1,
+   "role": "control"
+  },
+  {
+   "id": "c09_f1",
+   "dir": "results/pd12/c09_f1",
+   "seed": 2009,
+   "factor": 1,
+   "role": "control"
+  },
+  {
+   "id": "c10_f1",
+   "dir": "results/pd12/c10_f1",
+   "seed": 2010,
+   "factor": 1,
+   "role": "control"
+  },
+  {
+   "id": "rep_p01_f1",
+   "dir": "results/pd12/rep_p01_f1",
+   "seed": 1001,
+   "factor": 1,
+   "role": "repeat"
+  }
+ ],
+ "pairs": [
+  {
+   "f1": "p01_f1",
+   "f3": "p01_f3"
+  },
+  {
+   "f1": "p02_f1",
+   "f3": "p02_f3"
+  },
+  {
+   "f1": "p03_f1",
+   "f3": "p03_f3"
+  },
+  {
+   "f1": "p04_f1",
+   "f3": "p04_f3"
+  },
+  {
+   "f1": "p05_f1",
+   "f3": "p05_f3"
+  },
+  {
+   "f1": "p06_f1",
+   "f3": "p06_f3"
+  },
+  {
+   "f1": "p07_f1",
+   "f3": "p07_f3"
+  },
+  {
+   "f1": "p08_f1",
+   "f3": "p08_f3"
+  },
+  {
+   "f1": "p09_f1",
+   "f3": "p09_f3"
+  },
+  {
+   "f1": "p10_f1",
+   "f3": "p10_f3"
+  },
+  {
+   "f1": "p11_f1",
+   "f3": "p11_f3"
+  },
+  {
+   "f1": "p12_f1",
+   "f3": "p12_f3"
+  },
+  {
+   "f1": "p13_f1",
+   "f3": "p13_f3"
+  },
+  {
+   "f1": "p14_f1",
+   "f3": "p14_f3"
+  },
+  {
+   "f1": "p15_f1",
+   "f3": "p15_f3"
+  },
+  {
+   "f1": "p16_f1",
+   "f3": "p16_f3"
+  },
+  {
+   "f1": "p17_f1",
+   "f3": "p17_f3"
+  },
+  {
+   "f1": "p18_f1",
+   "f3": "p18_f3"
+  },
+  {
+   "f1": "p19_f1",
+   "f3": "p19_f3"
+  },
+  {
+   "f1": "p20_f1",
+   "f3": "p20_f3"
+  }
+ ],
+ "controls": [
+  {
+   "a": "p01_f1",
+   "b": "c01_f1"
+  },
+  {
+   "a": "p02_f1",
+   "b": "c02_f1"
+  },
+  {
+   "a": "p03_f1",
+   "b": "c03_f1"
+  },
+  {
+   "a": "p04_f1",
+   "b": "c04_f1"
+  },
+  {
+   "a": "p05_f1",
+   "b": "c05_f1"
+  },
+  {
+   "a": "p06_f1",
+   "b": "c06_f1"
+  },
+  {
+   "a": "p07_f1",
+   "b": "c07_f1"
+  },
+  {
+   "a": "p08_f1",
+   "b": "c08_f1"
+  },
+  {
+   "a": "p09_f1",
+   "b": "c09_f1"
+  },
+  {
+   "a": "p10_f1",
+   "b": "c10_f1"
+  }
+ ],
+ "repeat": {
+  "original": "p01_f1",
+  "repeat": "rep_p01_f1"
+ }
+}
