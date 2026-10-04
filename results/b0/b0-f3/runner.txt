@@ -1,0 +1,2 @@
+4
+Model name:                              INTEL(R) XEON(R) PLATINUM 8573C
