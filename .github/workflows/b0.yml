@@ -1,4 +1,5 @@
-# b0.yml  v4 [CL, 4 October 2026]
+# b0.yml  v5 [CL, 5 October 2026]
+# v5: also keeps collision_log.csv (formation_run v2), which v4 left out of the saved files.
 # v4: resume download goes to the repository root, because the artifact keeps the run/ and build/ folders;
 #     v3 put it in run/run/, so session 2 silently restarted from the beginning.
 # Exploratory benchmark B0: one real-size run and one 3x run from the same B0 seed, one 6-hour session each.
@@ -57,6 +58,8 @@ jobs:
             run/state.txt
             run/progress.csv
             run/collision_report.txt
+            run/collision_log.csv
+            run/done.txt
             run/runner.txt
             build/build_hashes.txt
           retention-days: 90
