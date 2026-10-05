@@ -1,4 +1,6 @@
-# b0.yml  v3 [CL, 4 October 2026]
+# b0.yml  v4 [CL, 4 October 2026]
+# v4: resume download goes to the repository root, because the artifact keeps the run/ and build/ folders;
+#     v3 put it in run/run/, so session 2 silently restarted from the beginning.
 # Exploratory benchmark B0: one real-size run and one 3x run from the same B0 seed, one 6-hour session each.
 # B0 is exploratory: it sets the cost estimate and the P-D12 matched-stage fraction. Its seed is never reused in P-D12.
 # v3: runner hardware is recorded after any resume download, appended per session.
@@ -36,7 +38,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: b0-f${{ matrix.factor }}
-          path: run
+          path: .
           run-id: ${{ inputs.resume_run_id }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Record runner hardware (appended per session)
