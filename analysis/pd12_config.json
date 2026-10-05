@@ -1,8 +1,8 @@
 {
- "_note": "P-D12 configuration [CL draft, 4 October 2026]. NOT CERTIFIED. stage_measure and stage_fraction are set from B0 before certification. Amendments approved by CBH on 4 October 2026: primary statistic is the ratio of summed S across pairs; rule v2 (an interval excluding no difference gives NOT ACCEPTED whatever the control says).",
- "certified": false,
- "stage_measure": "TBD",
- "stage_fraction": null,
+ "_note": "P-D12 configuration. Stage set by CBH on 5 October 2026 (small-body pool at 0.75 of start). Amendments approved by CBH on 4 October 2026 (ratio of summed S; rule v2). Certified by freeze_and_check.py against preregistrations/P-D12.md; any change to this file is a new instrument.",
+ "certified": true,
+ "stage_measure": "small",
+ "stage_fraction": 0.75,
  "r_lo": 0.8,
  "r_hi": 1.25,
  "f_tol": 0.05,
