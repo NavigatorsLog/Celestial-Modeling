@@ -2,7 +2,7 @@
 
 Committed 6 October 2026, while P-D12 is still running and before any stripping statistic has been computed. This file is not part of the frozen instrument and changes nothing in it; it records what each verdict will trigger, so the response cannot be chosen after seeing the result.
 
-Decisions by Christopher Blake Head [CBH]; wording and the items marked [CL] by Claude, pending CBH.
+Decisions by Christopher Blake Head [CBH]; wording and the items marked [CL] by Claude, all approved by CBH on 6 October 2026, before the verdict.
 
 ## If ACCEPTED
 Factor 3 may be used for production, with the stated limit that acceptance covers only the stage tested. Before factor 3 is adopted, the cheapest falsifier runs first: 5 extra pairs on the second Chambers (2013) disk must also pass leg 1 of the rule. [CL, from the preregistration]
