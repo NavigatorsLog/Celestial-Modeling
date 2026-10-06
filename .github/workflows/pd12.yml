@@ -1,4 +1,6 @@
-# pd12.yml  v2 [CL, 6 October 2026]  (harness only; the frozen instrument is unchanged)
+# pd12.yml  v3 [CL, 6 October 2026]  (harness only; the frozen instrument is unchanged)
+# v3: the chain pulls before pushing; in v1 and v2 the push was rejected whenever main had moved during the round,
+#     and the error was swallowed, so round 1's progress never reached results/pd12/ (the saved files were intact).
 # v2: (1) runner image pinned to ubuntu-24.04, so the compiler cannot change mid-test when ubuntu-latest moves to
 #     Ubuntu 26 on 19 October 2026; (2) a run whose previous session left no saved files (runner lost, or never
 #     acquired) starts again from its seed instead of failing, which is safe because runs are deterministic;
@@ -105,7 +107,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898+github-actions[bot]@users.noreply.github.com"
           git add results/pd12 && git commit -m "P-D12 round ${{ github.run_id }}: $left runs remaining" || true
-          git push || true
+          for k in 1 2 3; do git pull --rebase origin main && git push && break; sleep 10; done
           if [ "$left" -gt 0 ]; then
             gh workflow run pd12.yml -f resume_run_id=${{ github.run_id }}
           fi
