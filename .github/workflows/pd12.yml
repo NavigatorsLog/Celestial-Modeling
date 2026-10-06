@@ -1,4 +1,9 @@
-# pd12.yml  [CL draft, 4 October 2026]
+# pd12.yml  v2 [CL, 6 October 2026]  (harness only; the frozen instrument is unchanged)
+# v2: (1) runner image pinned to ubuntu-24.04, so the compiler cannot change mid-test when ubuntu-latest moves to
+#     Ubuntu 26 on 19 October 2026; (2) a run whose previous session left no saved files (runner lost, or never
+#     acquired) starts again from its seed instead of failing, which is safe because runs are deterministic;
+#     (3) the chain counts unfinished runs from the config's run list, not from the saved files that happen to exist,
+#     so a lost run can no longer drop out of the test unnoticed.
 # Confirmatory comparison P-D12. Each round runs one 5.5-hour session of every unfinished run, publishes the text
 # outputs to results/pd12/, and, if any run has not reached the matched stage, starts the next round by itself.
 # Guard: refuses to run unless analysis/pd12_config.json says certified: true (commit-before-run discipline).
@@ -14,7 +19,7 @@ permissions:
   actions: write
 jobs:
   plan:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     outputs:
       matrix: ${{ steps.m.outputs.matrix }}
       measure: ${{ steps.m.outputs.measure }}
@@ -36,7 +41,7 @@ jobs:
           PY
   run:
     needs: plan
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 350
     strategy:
       fail-fast: false
@@ -46,6 +51,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Fetch this run's previous session
         if: ${{ inputs.resume_run_id != '' }}
+        continue-on-error: true
         uses: actions/download-artifact@v4
         with:
           name: pd12-${{ matrix.id }}
@@ -72,7 +78,7 @@ jobs:
   chain:
     needs: run
     if: ${{ always() }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
@@ -83,13 +89,18 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          left=0
-          for d in dl/pd12-*/; do
-            id=$(basename "$d"); id=${id#pd12-}
-            mkdir -p "results/pd12/$id"
-            find "$d" -maxdepth 1 -type f \( -name '*.csv' -o -name '*.txt' \) -exec cp {} "results/pd12/$id/" \;
+          left=0; lost=""
+          for id in $(python3 -c "import json;print(' '.join(r['id'] for r in json.load(open('analysis/pd12_config.json'))['runs']))"); do
+            d="dl/pd12-$id"
+            if [ -d "$d" ]; then
+              mkdir -p "results/pd12/$id"
+              find "$d" -maxdepth 1 -type f \( -name '*.csv' -o -name '*.txt' \) -exec cp {} "results/pd12/$id/" \;
+            else
+              lost="$lost $id"
+            fi
             [ -f "$d/done.txt" ] || left=$((left+1))
           done
+          echo "no saved files this round (will restart from seed):$lost" > results/pd12/LOST.txt
           echo "round ${{ github.run_id }}: $left runs not yet at the matched stage" > results/pd12/ROUND.txt
           git config user.name "github-actions[bot]"
           git config user.email "41898+github-actions[bot]@users.noreply.github.com"
