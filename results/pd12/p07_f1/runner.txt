@@ -10,3 +10,6 @@ Model name:                              AMD EPYC 7763 64-Core Processor
 session started 2026-10-07T03:19:35Z
 4
 Model name:                              Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz
+session started 2026-10-07T14:20:54Z
+4
+Model name:                              AMD EPYC 9V45 96-Core Processor
