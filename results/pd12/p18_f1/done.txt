@@ -1,0 +1,1 @@
+stage reached at t=3.380000e+06
