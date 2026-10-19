@@ -1672,3 +1672,5 @@ t_yr,N,loose_Mearth,resolve_calls,walltime_s,small_Mearth
 1.620000e+07,151,1.2097983996e+00,230,18689.4,9.8659839961e-01
 1.621000e+07,151,1.2097983996e+00,230,19392.8,9.8659839961e-01
 # session end t=1.621084e+07 N=150 stopped_by_walltime=1 stage_reached=0
+1.622000e+07,89,8.0837927451e-01,336,7902.5,5.8517927451e-01
+# session end t=1.622000e+07 N=89 stopped_by_walltime=0 stage_reached=1
