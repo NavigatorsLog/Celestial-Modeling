@@ -244,3 +244,6 @@ Model name:                              Intel(R) Xeon(R) Platinum 8370C CPU @ 2
 session started 2026-10-26T10:00:55Z
 4
 Model name:                              Intel(R) Xeon(R) 6973P-C
+session started 2026-10-26T15:31:51Z
+4
+Model name:                              AMD EPYC 9V74 80-Core Processor
