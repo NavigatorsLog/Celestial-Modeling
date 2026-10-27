@@ -247,3 +247,6 @@ Model name:                              Intel(R) Xeon(R) 6973P-C
 session started 2026-10-26T15:32:12Z
 4
 Model name:                              AMD EPYC 9V45 96-Core Processor
+session started 2026-10-26T21:03:01Z
+4
+Model name:                              AMD EPYC 9V74 80-Core Processor
