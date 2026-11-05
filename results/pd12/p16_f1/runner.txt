@@ -370,3 +370,6 @@ Model name:                              AMD EPYC 9V74 80-Core Processor
 session started 2026-11-05T01:36:06Z
 4
 Model name:                              AMD EPYC 9V45 96-Core Processor
+session started 2026-11-05T07:06:54Z
+4
+Model name:                              AMD EPYC 9V74 80-Core Processor
