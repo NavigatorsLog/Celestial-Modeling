@@ -373,3 +373,6 @@ Model name:                              INTEL(R) XEON(R) PLATINUM 8573C
 session started 2026-11-05T07:07:10Z
 4
 Model name:                              INTEL(R) XEON(R) PLATINUM 8573C
+session started 2026-11-05T12:37:54Z
+4
+Model name:                              Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz
