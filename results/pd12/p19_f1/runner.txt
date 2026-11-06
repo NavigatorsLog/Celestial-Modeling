@@ -379,3 +379,6 @@ Model name:                              Intel(R) Xeon(R) 6975P-C
 session started 2026-11-05T18:08:40Z
 4
 Model name:                              INTEL(R) XEON(R) PLATINUM 8573C
+session started 2026-11-05T23:39:20Z
+4
+Model name:                              AMD EPYC 9V45 96-Core Processor
