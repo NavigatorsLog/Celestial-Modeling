@@ -415,3 +415,6 @@ Model name:                              AMD EPYC 7763 64-Core Processor
 session started 2026-11-08T12:20:45Z
 4
 Model name:                              AMD EPYC 7763 64-Core Processor
+session started 2026-11-08T17:51:26Z
+4
+Model name:                              AMD EPYC 9V45 96-Core Processor
