@@ -484,3 +484,6 @@ Model name:                              INTEL(R) XEON(R) PLATINUM 8573C
 session started 2026-11-13T19:10:14Z
 4
 Model name:                              Intel(R) Xeon(R) 6975P-C
+session started 2026-11-14T00:41:03Z
+4
+Model name:                              Intel(R) Xeon(R) 6975P-C
