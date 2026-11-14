@@ -490,3 +490,6 @@ Model name:                              AMD EPYC 9V74 80-Core Processor
 session started 2026-11-14T06:12:01Z
 4
 Model name:                              Intel(R) Xeon(R) 6975P-C
+session started 2026-11-14T11:42:48Z
+4
+Model name:                              INTEL(R) XEON(R) PLATINUM 8573C
