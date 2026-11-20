@@ -562,3 +562,6 @@ Model name:                              AMD EPYC 9V45 96-Core Processor
 session started 2026-11-19T18:36:58Z
 4
 Model name:                              Intel(R) Xeon(R) 6975P-C
+session started 2026-11-20T00:08:01Z
+4
+Model name:                              AMD EPYC 7763 64-Core Processor
