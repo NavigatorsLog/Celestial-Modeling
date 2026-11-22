@@ -589,3 +589,6 @@ Model name:                              Intel(R) Xeon(R) 6975P-C
 session started 2026-11-22T01:46:31Z
 4
 Model name:                              AMD EPYC 7763 64-Core Processor
+session started 2026-11-22T07:17:22Z
+4
+Model name:                              INTEL(R) XEON(R) PLATINUM 8573C
